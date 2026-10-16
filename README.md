@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# dbc-lens
 
-## Getting Started
+A browser-based viewer for CAN DBC files and CAN logs.
+Everything runs locally in your browser — **your files are never uploaded to a server.**
 
-First, run the development server:
+> 🚧 Work in progress. See the [Roadmap](docs/ROADMAP.md) for planned features.
+
+<!-- Add a screenshot here once the UI is ready:
+![dbc-lens screenshot](docs/screenshot.png)
+-->
+
+**Live demo:** coming soon
+
+## Why
+
+Engineers working with CAN often need to quickly check a DBC definition or glance at a log,
+without launching heavyweight desktop tools. DBC files are also often confidential,
+so dbc-lens processes everything client-side and never sends your data anywhere.
+
+## Features
+
+- [ ] Load a `.dbc` file and browse messages and signals
+- [ ] Decode CAN frames from Vector `.asc` logs using the DBC
+- [ ] Plot decoded signals over time
+- [x] No server-side processing — files stay on your machine
+
+## Tech stack
+
+- [Next.js](https://nextjs.org/) + TypeScript
+- Docker-based development environment
+
+## Getting started
+
+### With Docker (recommended)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Ken-Qoo/dbc-lens.git
+cd dbc-lens
+docker compose up --build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **Windows users:** clone the repository inside the WSL2 filesystem (e.g. `~/workspace`),
+> not under `C:\`, for correct file permissions and fast hot reload.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Without Docker
 
-## Learn More
+Requires Node.js 24 or later.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Sample data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The `fixtures/` directory contains small synthetic files for testing:
 
-## Deploy on Vercel
+- `fixtures/sample.dbc` — sample DBC definition
+- `fixtures/sample.asc` — sample CAN log in Vector ASC format
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## About
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by an embedded software engineer with ~20 years of experience in embedded Linux and BLE development.
+
+## License
+
+[MIT](LICENSE)
